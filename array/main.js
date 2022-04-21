@@ -31,13 +31,25 @@ class MyArray {
   shiftIndex(index) {
     for (let i = index; i < this.length - 1; i++) {
       this.data[i] = this.data[i + 1];
-      console.log(this);
     }
     delete this.data[this.length - 1];
     this.length--;
   }
 
-  //  TODO: agregar y borrar elemento al inicio
+  shift() {
+    const firstItem = this.data[0];
+    this.shiftIndex(0);
+    return firstItem;
+  }
+
+  unshift(item) {
+    const lastItem = this.data[this.length - 1];
+    for (let i = this.length-1; i > 0; i--) {
+      this.data[i] = this.data[i-1];
+    }
+    this.push(lastItem);
+    this.data[0] = item;
+  }
 
 }
 
@@ -48,5 +60,7 @@ myArray.push(3);
 myArray.push(4);
 myArray.push(5);
 console.log(myArray);
-console.log(myArray.delete(2));
+myArray.unshift(0);
+console.log(myArray);
+myArray.unshift(-1);
 console.log(myArray);
